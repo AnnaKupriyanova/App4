@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ASprojects/App4-main/RView/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
+        <entry key="..\:/ASprojects/App4-main/RView/app/src/main/res/layout/recyclerview_item.xml" value="0.2536231884057971" />
         <entry key="..\:/ASprojects/RView/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/ASprojects/RView/app/src/main/res/layout/recyclerview_item.xml" value="0.22826086956521738" />
         <entry key="..\:/ASprojects/RView/app/src/main/res/layout/rview_item.xml" value="0.264" />

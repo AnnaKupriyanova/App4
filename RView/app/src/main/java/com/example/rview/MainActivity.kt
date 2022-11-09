@@ -7,11 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-//interface CellClickListener {
-//    fun onCellClickListener(color: String)
-//}
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), RecyclerAdapter.CellClickListener {
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,39 +19,26 @@ class MainActivity : AppCompatActivity() {
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = RecyclerAdapter(fetchList())
+        recyclerView.adapter = RecyclerAdapter(this, fillList(), this)
     }
 
-    class ColorData(val colorName: String, val colorHex: Int) {
-        fun getMyColorName() : String {return this.colorName}
-        fun getMyColorHex() : Int {return this.colorHex}
-    }
+    class ColorData(val colorName: String, val colorHex: Int)
 
-    private fun fetchList(): ArrayList<ColorData> {
-        val data = arrayListOf<ColorData>()
-
-        for (index in 0..4) {
-            val color = ColorData(Colors()[index].getMyColorName(),
-                                  Colors()[index].getMyColorHex())
-            data.add(color)
-        }
-        return data
-    }
-
-    private fun Colors(): ArrayList<ColorData> {
+    private fun fillList(): ArrayList<ColorData> {
+        val data_name = this.resources.getStringArray((R.array.color_name))
+        val data_hex = this.resources.getIntArray(R.array.color_hex)
         val list = arrayListOf<ColorData>()
+        var count = 0
 
-        list.add(ColorData("BLACK", Color.BLACK))
-        list.add(ColorData("WHITE", Color.WHITE))
-        list.add(ColorData("MAGENTA", Color.MAGENTA))
-        list.add(ColorData("RED", Color.RED))
-        list.add(ColorData("BLUE", Color.BLUE))
-
+        while (count < data_name.count()) {
+            list.add(ColorData(data_name[count], data_hex[count]))
+            count++
+        }
         return list
     }
 
-   // override fun onCellClickListener(color: String) {
-   //     Toast.makeText(applicationContext, "It`s $color", Toast.LENGTH_SHORT).show()
-   // }
+    override fun onCellClickListener(data: String) {
+        Toast.makeText(applicationContext, "It`s $data", Toast.LENGTH_SHORT).show()
+    }
 
 }
